@@ -2,9 +2,7 @@ import subprocess
 import re
 import os
 
-
 import toml   # .loads, .dumps
-from toml.ordered import TomlOrderedDecoder, TomlOrderedEncoder
 
 # TOML: background on the possibility of preserving comments as a decoder/encoder...
 #       https://github.com/uiri/toml/issues/77
@@ -18,6 +16,11 @@ from toml.ordered import TomlOrderedDecoder, TomlOrderedEncoder
 #
 #   I tried it; it didn't work. Possibly it can be patched, but who knows whether
 #   that's a worthy use of my time?  I couldn't patch-fix it in 5 minutes, so...  -nm
+#
+# Also useless: some code in the official release that purports to do Ordered dicts.
+#    from toml.ordered import TomlOrderedDecoder, TomlOrderedEncoder
+#
+#   ^^ Using TomlOrderedDecoder just errored out immediately and i was just totally bored.
  
 
 DATADIR = './data'
@@ -123,7 +126,7 @@ def postprocess_toml_dump(dump):
     :param dump: (str)
     :rtype: str
     """
-    lines = dump.split()
+    lines = dump.split('\n')
 
     for x in range(0, len(lines)):
         if NANSENSE in lines[x]:
