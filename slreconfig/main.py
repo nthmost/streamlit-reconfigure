@@ -17,13 +17,12 @@ def main(ctx, **kwargs):
     # create a config for "internal use only" (contains NANSENSE placeholders)
     config = toml.loads(preprocess_rawconfig(rawconfig))
 
-    for key in kwargs.keys():
-        if kwargs[key] is not None:
-            #key name contains category name and variable name.
-            cat, var = key.split('_', maxsplit=1)
-            config[cat][var] = kwargs[key]
-
-    from IPython import embed; embed()
+    # iterate over the config, not the CLI input, because the config is full of
+    # weird mixed-case thingies that we need to preserve.
+    for topkey in config.keys():
+        for key in config[topkey].keys():
+            if kwargs.get(key.lower(), None):
+                config[key] = kwargs[key]
 
     # dump (TOML) the new config, then reprocess the output to wash away NANSENSE.
     outp = postprocess_toml_dump(toml.dumps(config))
