@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
 setup(
-    name = 'streamlit-reconfig',
+    name = 'streamlit-reconfigure',
     version = '0.0.1',
     description = 'Streamlit Reconfigurator CLI tool',
-    url = 'https://github.com/nthmost/streamlit-reconfig',
+    url = 'https://github.com/nthmost/streamlit-reconfigure',
     author = 'Naomi Most',
     maintainer = 'Naomi Most',
     author_email = 'naomi@nthmost.com',
@@ -12,7 +12,7 @@ setup(
     license = 'Apache 2.0',
     packages = find_packages(),
     entry_points = { 'console_scripts': [
-                        'streamlit-reconfig = slreconfig.main:main',
+                        'streamlit-reconfigure = slreconfig.main:main',
                     ]
                    },
     install_requires = [
