@@ -1,7 +1,5 @@
 # Streamlit-Reconfigure
 
-`streamlit-reconfigure`
-
 This code defines a command-line tool called `streamlit-reconfigure` that ingests 
 the output of the streamlit command `streamlit config show`, parses it into a data 
 structure via TOML, and allows changes to that data structure via the use of options 
@@ -47,7 +45,7 @@ empty values, so there's a workaround in slreconfigure.gears.
 
 ## CURRENT ISSUES
 
-* (BUG) Not handling lists correctly.  The output of `streamlit-reconfigure --server-folderWatchBlacklist=['1','2'] is the following very wrong result:
+* (BUG) Not handling lists correctly.  The output of `streamlit-reconfigure --server-folderWatchBlacklist=['1','2']` is the following very wrong result:
 
         [server]
         folderWatchBlacklist = [ "[", "1", ",", "2", "]",]
