@@ -96,3 +96,15 @@ def postprocess_toml_dump(dump):
     return '\n'.join(lines)
 
 
+def gather_rawconfig():
+    """Runs `streamlit config show` in shell and returns its output as string.
+
+    :rtype: str
+    """
+    cmd = 'streamlit config show'
+    process = subprocess.run(cmd.split(), check=True, stdout=subprocess.PIPE, universal_newlines=True)
+    rawconfig = process.stdout
+    return str(rawconfig)
+
+
+

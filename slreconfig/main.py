@@ -6,16 +6,6 @@ import click
 from .clickload import load_defaults, configurator_options
 from .gears import *
 
-def gather_rawconfig():
-    """Runs `streamlit config show` in shell and returns its output as string.
-
-    :rtype: str
-    """
-    cmd = 'streamlit config show'
-    process = subprocess.run(cmd.split(), check=True, stdout=subprocess.PIPE, universal_newlines=True)
-    rawconfig = process.stdout
-    return str(rawconfig)
-
 
 @click.command()
 @configurator_options
@@ -33,6 +23,8 @@ def main(ctx, **kwargs):
             #key name contains category name and variable name.
             cat, var = key.split('_', maxsplit=1)
             config[cat][var] = kwargs[key]
+
+    from IPython import embed; embed()
 
     # dump (TOML) the new config, then reprocess the output to wash away NANSENSE.
     outp = postprocess_toml_dump(toml.dumps(config))
