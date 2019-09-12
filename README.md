@@ -55,6 +55,9 @@ empty values, so there's a workaround in slreconfigure.gears.
         port = 8000
         enableCORS = true
 
+  this also doesn't work:  `streamlit-reconfigure --server-folderWatchBlacklist=1,2`
+  nor does this:  `streamlit-reconfigure --server-folderWatchBlacklist="1","2"`
+
 * (bug) CLI options that might indicate an intention to *unset* a variable will not work.  i.e. there is no way to do, say, `streamlit-reconfigure --s3-bucket=None` and have the result be a commented-out variable.
 * (story) There should be a way to unset a variable; this is a user interaction feature that needs to be designed.
 
