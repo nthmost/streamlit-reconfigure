@@ -1,6 +1,5 @@
 "Main run point for streamlit-reconfigure, using click to create command line options."
 
-import subprocess
 import click
 
 from .clickload import load_defaults, configurator_options
