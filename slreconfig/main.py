@@ -21,17 +21,18 @@ def gather_rawconfig():
 @configurator_options
 @click.pass_context
 def main(ctx, **kwargs):
-    #print('Loading current streamlit config...')
+    """Loads current streamlit config, applies any new settings given to click, and 
+    generates a new config file with the modified settings."""
     rawconfig = gather_rawconfig()
-
-    #print('...got it.')
 
     # create a config for "internal use only" (contains NANSENSE placeholders)
     config = toml.loads(preprocess_rawconfig(rawconfig))
 
-    # rewrite the config using any received user input
-    # TODO
-    from IPython import embed; embed()
+    for key in kwargs.keys():
+        if kwargs[key] is not None:
+            #key name contains category name and variable name.
+            cat, var = key.split('_', maxsplit=1)
+            config[cat][var] = kwargs[key]
 
     # dump (TOML) the new config, then reprocess the output to wash away NANSENSE.
     outp = postprocess_toml_dump(toml.dumps(config))
