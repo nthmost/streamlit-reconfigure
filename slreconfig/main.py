@@ -21,8 +21,12 @@ def main(ctx, **kwargs):
     # weird mixed-case thingies that we need to preserve.
     for topkey in config.keys():
         for key in config[topkey].keys():
-            if kwargs.get(key.lower(), None):
-                config[key] = kwargs[key]
+            optkey = '{}_{}'.format(topkey, key).lower()
+            # if this option key was given a value, relay it to the config.
+            if kwargs.get(optkey, None):
+                config[topkey][key] = kwargs[optkey]
+
+    #from IPython import embed; embed()
 
     # dump (TOML) the new config, then reprocess the output to wash away NANSENSE.
     outp = postprocess_toml_dump(toml.dumps(config))
