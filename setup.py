@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'streamlit-reconfigure',
-    version = '0.0.2',
+    version = '0.0.3',
     description = 'Streamlit Reconfigurator CLI tool',
     url = 'https://github.com/nthmost/streamlit-reconfigure',
     author = 'Naomi Most',
@@ -14,6 +14,7 @@ setup(
     package_data={'slreconfig': ['config/*.toml']},
     entry_points = { 'console_scripts': [
                         'streamlit-reconfigure = slreconfig.main:main',
+                        'streamlit-defaults = slreconfig.main:defaults',
                     ]
                    },
     install_requires = [
