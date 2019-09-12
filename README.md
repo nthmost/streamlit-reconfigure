@@ -33,7 +33,7 @@ Try `streamlit-reconfigure --help` to see all the options you can now configure.
 
 You'll probably want to redirect output to a file when you change the options, like so:
 
-   streamlit-reconfigure --browser-severPort 8000 > newconfig.toml
+        streamlit-reconfigure --browser-serverPort 8000 > newconfig.toml
 
 
 ## What's Cool About This
@@ -47,19 +47,18 @@ empty values, so there's a workaround in slreconfigure.gears.
 
 ## CURRENT ISSUES
 
-* (BUG) Not handling lists correctly.  The result of `streamlit-reconfigure --server-folderWatchBlacklist=['1','2','3'] is the following very wrong result:
+* (BUG) Not handling lists correctly.  The output of `streamlit-reconfigure --server-folderWatchBlacklist=['1','2'] is the following very wrong result:
 
         [server]
-        folderWatchBlacklist = []
+        folderWatchBlacklist = [ "[", "1", ",", "2", "]",]
         headless = false
         liveSave = false
         runOnSave = false
         port = 8000
         enableCORS = true
-        folderwatchblacklist = [ "[", "1", ",", "2", "]",]
 
 * (bug) CLI options that might indicate an intention to *unset* a variable will not work.  i.e. there is no way to do, say, `streamlit-reconfigure --s3-bucket=None` and have the result be a commented-out variable.
-* (story) There should be a way to unset a variable; this is an interaction features that needs to be designed.
+* (story) There should be a way to unset a variable; this is a user interaction feature that needs to be designed.
 
 
 ## Scope Limitations
