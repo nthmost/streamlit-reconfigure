@@ -1,13 +1,7 @@
-"Main run point for streamlit-reconfigure, using click to create command line options."
+"Config file extrusion, conversion, processing, and repackaging."
 
 import re
-import subprocess
-
-import click
 import toml
-
-from .clickload import generate_options
-
 
 ### A FEW WELL CHOSEN GLOBALS 
 #
@@ -20,19 +14,7 @@ re_comment = re.compile('^\s?#+\s?(?P<comment>.*?)$')
 # matches any key-val pair (or just a key) that was commented out w/ a #
 re_commented_out_key = re.compile('^\s?#+\s?(?:(?P<key>.*)\s?=\s?(?P<val>.*?))?$')
 
-#
 ### THAT'S ALL FOR GLOBALS.
-
-
-def gather_rawconfig():
-    """Runs `streamlit config show` in shell and returns its output as string.
-
-    :rtype: str
-    """
-    cmd = 'streamlit config show'
-    process = subprocess.run(cmd.split(), check=True, stdout=subprocess.PIPE, universal_newlines=True)
-    rawconfig = process.stdout
-    return str(rawconfig)
 
 
 def comment_to_key(line):
@@ -113,21 +95,4 @@ def postprocess_toml_dump(dump):
 
     return '\n'.join(lines)
 
-
-@click.command()
-def main():
-    print('Loading current streamlit config...')
-    rawconfig = gather_rawconfig()
-
-    print('...got it.')
-
-    # create a config for "internal use only" (contains NANSENSE placeholders)
-    config = toml.loads(preprocess_rawconfig(rawconfig))
-
-    # rewrite the config using any received user input
-    # TODO
-
-    # dump (TOML) the new config, then reprocess the output to wash away NANSENSE.
-    outp = postprocess_toml_dump(toml.dumps(config))
-    print(outp)
 

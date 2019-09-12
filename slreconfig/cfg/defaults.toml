@@ -1,0 +1,39 @@
+[global]
+sharingMode = "streamlit-public"
+showWarningOnDirectExecution = true
+logLevel = "info"
+
+[client]
+caching = true
+displayEnabled = true
+
+[runner]
+magicEnabled = false
+installTracer = false
+fixMatplotlib = true
+
+[server]
+# Example: ['/home/user1/env', 'relative/path/to/folder']
+# Default: []
+folderWatchBlacklist = []
+headless = false
+liveSave = false
+runOnSave = false
+port = 8501
+enableCORS = true
+
+[browser]
+serverAddress = "localhost"
+gatherUsageStats = true
+serverPort = 8501
+
+[s3]
+bucket = "share.streamlit.io"
+url = "https://share.streamlit.io/"
+accessKeyId = "(unset)"
+secretAccessKey = "(unset)"
+requireLoginToView = false
+keyPrefix = ""
+region = "(unset)"
+profile = "(unset)"
+

@@ -1,5 +1,0 @@
-setuptools
-wheel 
-toml @ git+https://github.com/uiri/toml.git#egg=toml
-streamlit
-click

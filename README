@@ -1,8 +1,8 @@
-# Streamlit-Reconfig
+# Streamlit-Reconfigure
 
-`streamlit-reconfig`
+`streamlit-reconfigure`
 
-This projects defines a command-line tool called `streamlit-reconfig` that ingests 
+This projects defines a command-line tool called `streamlit-reconfigure` that ingests 
 the output of the streamlit command `streamlit config show`, parses it into a data 
 structure via TOML, and allows changes to that data structure via the use of options 
 on the command line.
@@ -19,7 +19,7 @@ Clone this repo.  Then navigate into the root of this repo and do:
     source ve/bin/activate
     python setup.py
 
-If all went well, you should now have the command-line app `streamlit-reconfig` at
+If all went well, you should now have the command-line app `streamlit-reconfigure` at
 your disposal.
 
 
